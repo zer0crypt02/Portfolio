@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolyo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .header-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .header p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .btn:hover {
+            background: #fff;
+            color: #0a0a0a;
+        }
+
+        .projects {
+            padding: 5rem 10%;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(50px);
+            margin-left: 3rem;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .project-card h3 {
+            margin: 1rem 0;
+        }
+
+        .project-card p {
+            color: #aaa;
+            margin-bottom: 1rem;
+        }
+
+        .project-card:hover {
+            animation: card-animation 2s ease-in-out;
+        }
+
+        .skills {
+            padding: 5rem 10%;
+            background: #1a1a1a;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .skill-card img {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .kali {
+            width: 200px;
+            height: 200px;
+        }
+
+        .kali:hover {
+            animation: kali-animation 2s ease-in-out;
+        }
+
+        .desing {
+            width: 200px;
+            height: 200px;
+        }
+
+        .desing:hover {
+            animation: desing-animation 2s ease-in-out;
+        }
+
+        .software {
+            width: 200px;
+            height: 200px;
+        }
+
+        .software:hover {
+            animation: software-animation 2s ease-in-out;
+        }
+
+        .contact {
+            padding: 5rem 10%;
+            text-align: center;
+        }
+
+        .iletisim {
+            padding: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .github{
+            width: 35px;
+            height: 35px;
+        }
+
+        .github:hover {
+            animation: github-animation 2s ease-in infinite;
+        }
+
+        .insta {
+            width: 35px;
+            height: 35px;
+        }
+
+        .insta:hover {
+            animation: insta-animation 2s ease-in infinite;
+        }
+
+        .medium {
+            width: 35px;
+            height: 35px;
+        }
+
+        .medium:hover {
+            animation: medium-animation 2s ease-in infinite;
+        }
+
+        @keyframes card-animation {
+            0% {
+                transform: rotateX(5deg);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes kali-animation {
+            0% {
+                transform: rotateX(60deg);
+            }
+
+            50% {
+                transform: scale(1.6);
+            }
+
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        @keyframes software-animation {
+            0% {
+                transform: rotateX(-60deg);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes desing-animation {
+            0% {
+                transform: rotateX(60deg);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes github-animation {
+            0%, 100% {
+                transform: rotate(30deg);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes insta-animation {
+            0%, 100% {
+                transform: rotate(-30deg);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes medium-animation {
+            0%, 100% {
+                transform: rotate(30deg);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1>Merhaba, Ben [Fatih]</h1>
+            <p>Siber Güvenlik, Yazılım, Tasarım</p>
+            <button class="btn">Projelerimi Gör</button>
+        </div>
+    </header>
+
+    <section class="projects">
+        <h2>Projelerim</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="InfernoF.jpeg" alt="Proje 1">
+                <h3>İnferno Framework</h3>
+                <p>PDF Dosyasına Shell Gizleme, Port Tarama, Site Klonlama, Bağlantı Yönetme/Dinleme Özelliklerine Sahip Bir Framework'tür.</p>
+            </div>
+            <div class="project-card">
+                <img src="T.Mani.jpeg" alt="Proje 2">
+                <h3>Traffic Manipulator</h3>
+                <p>ARP Zehirlenmesi, Cihaz Banlama, DNS Spoofing, Saldırılarını Yapabilen bir MITM Aracı.</p>
+            </div>
+            <div class="project-card">
+                <img src="WiTwister.jpeg" alt="Proje 3">
+                <h3>WiTwister</h3>
+                <p>AP Listeleme, Fake AP oluşturma, Dea Saldırılarını Yapabilen Bir Evil-Twin Aracı.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills">
+        <h2>Yeteneklerim</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <img class="kali" src="kali.png" alt="">
+                <h3>Siber Güvenlik</h3>
+                <p>Kali Linux, Nmap, Metasploit</p>
+            </div>
+            <div class="skill-card">
+                <img class="software" src="web-development.png" alt="">
+                <h3>Yazılım</h3>
+                <p>Python, HTML, CSS</p>
+            </div>
+            <div class="skill-card">
+                <img class="desing" src="web-design.png" alt="">
+                <h3>Tasarım</h3>
+                <p>Figma, Canva</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <h2 class="iletisim">İletişim</h2>
+        <p>Benimle İş Birliği Yapmak İster Misiniz?</p>
+        <div class="social-links">
+            <img id="github" class="github" src="github logo.webp" alt="">
+            <img id="insta" class="insta" src="instagram.png" alt="">
+            <img id="medium" class="medium" src="medium.png" alt="">
+            
+        </div>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Header animasyonları
+        gsap.to(".header h1", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5
+        });
+
+        gsap.to(".header p", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.7
+        });
+
+        gsap.to(".header .btn", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.9
+        });
+
+        // Proje kartları animasyonu
+        gsap.utils.toArray(".project-card").forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom-=100",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: i * 0.2
+            });
+        });
+
+        // Yetenek kartları animasyonu
+        gsap.utils.toArray(".skill-card").forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom-=100",
+                    toggleActions: "play none none reverse"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: i * 0.2
+            });
+        });
+
+        // Smooth scroll
+        document.querySelector('.btn').addEventListener('click', () => {
+            window.scrollTo({
+                top: document.querySelector('.projects').offsetTop,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
